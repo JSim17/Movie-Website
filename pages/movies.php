@@ -11,6 +11,7 @@
 
     $result = $conn->query($sql);
     $review_result = $conn->query($review_sql);
+    $review_return = $review_result->num_rows;
 
     if(!$result || !$review_result) {
         $errno = $conn->errno;
@@ -26,15 +27,15 @@
     <?php foreach($result as $res) { ?>
     <div class="col-xs-4">
         <img class="shadow rounded" src="<?php echo $res['movie_img']; ?>" style="float:left;width:400px;margin: 0 20px 20px 15px"/>
-        <h2 style="color: #4C5052">  Overview:</h2>
+        <h3 style="color: #4C5052">  Overview:</h3>
         <h2 class="text" style="font-weight:normal; font-size:110%">
             <?php echo $res['movie_overview'];?>
         </h2>
-        <h2 style="color: #4C5052">  Starring:</h2>
+        <h3 style="color: #4C5052">  Starring:</h3>
         <h2 class="text" style="font-weight:normal; font-size:110%">
             <?php echo $res['movie_cast'];?>
         </h2>
-        <h2 style="color: #4C5052">  Year:</h2>
+        <h3 style="color: #4C5052">  Year:</h3>
         <h2 class="text" style="font-weight:normal; font-size:110%">
             <?php echo $res['movie_year'];?>
         </h2>
@@ -46,13 +47,22 @@
         echo "<p>PLease <a class='alert-link' data-bs-toggle='modal' data-bs-target='#loginModal' href=''>login</a> to review and add movies!</p>";
         }?>
     </br>
-    <?php while($review_res = $review_result->fetch_assoc()) {
-        foreach($review_result as $review_res) {
-            
-        }
-    }?>
+    </br>
+    <?php 
+        while($review_res = $review_result->fetch_assoc()) {
+            if($review_return > 0 ){
+            echo '<h3 style="color:#4C5052"> Reviews:</h3>';
+                foreach($review_result as $review_res) {
+            ?>
+                <h2 class="text" style="font-weight:normal; font-size:110%">
+                <?php echo "<strong>" . $review_res['review_rating'] . " stars - </strong>" . $review_res['review_comment']?>
+                <hr/>
+                </h2>
+            <?php }}else{
+                echo "<h3 style='color:#4C5052'> There doesn't seem to be any reviews for this movie! Why not add one.</h3>";
+            } ?>
     </div>
-    <?php } ?>
+    <?php }} ?>
 </div>
 
 <!-- Modal -->
