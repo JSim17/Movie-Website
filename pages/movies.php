@@ -85,7 +85,7 @@
                         <option name="star" id="star2" value="2">&#9733; &#9733;</option>
                         <option name="star" id="star3" value="3">&#9733; &#9733; &#9733;</option>
                         <option name="star" id="star4" value="4">&#9733; &#9733; &#9733; &#9733;</option>
-                        <option name="star" id="star5" value="5">&#9733; &#9733; &#9733; &#9733; &#9733; &#9733;</option>
+                        <option name="star" id="star5" value="5">&#9733; &#9733; &#9733; &#9733; &#9733;</option>
                     </select>      
                 </div>
                 <div class="mb-3">
