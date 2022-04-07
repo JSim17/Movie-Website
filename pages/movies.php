@@ -3,6 +3,7 @@
 
     $page_title = mysqli_real_escape_string($conn, $_GET['title']);
     $movie_id = mysqli_real_escape_string($conn, $_GET['id']);
+    $mid = $_GET['id'];
     include_once '../templates/header.php';
 
     $sql = "SELECT * FROM movies WHERE movie_title='$page_title'";
@@ -24,7 +25,7 @@
 <div class="container wrapper">
     <?php foreach($result as $res) { ?>
     <div class="col-xs-4">
-        <img src="<?php echo $res['movie_img']; ?>" style="float:left;width:400px;margin: 0 20px 20px 15px"/>
+        <img class="shadow rounded" src="<?php echo $res['movie_img']; ?>" style="float:left;width:400px;margin: 0 20px 20px 15px"/>
         <h2 style="color: #4C5052">  Overview:</h2>
         <h2 class="text" style="font-weight:normal; font-size:110%">
             <?php echo $res['movie_overview'];?>
@@ -38,15 +39,62 @@
             <?php echo $res['movie_year'];?>
         </h2>
     </br>
-        <button class="btn btn-success">Review</button>
+    <?php if(isset($_SESSION['loggedin'])){?>
+        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#ratingModal">Review</button>
         <button class="btn btn-outline-dark">Watchlater</button>
+        <?php } else {
+        echo "<p>PLease <a class='alert-link' data-bs-toggle='modal' data-bs-target='#loginModal' href=''>login</a> to review and add movies!</p>";
+        }?>
     </br>
+    <?php while($review_res = $review_result->fetch_assoc()) {
+        foreach($review_result as $review_res) {
+            
+        }
+    }?>
     </div>
     <?php } ?>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="ratingModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="ratingModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="ratingModalLabel">Review <?php echo $_GET['title']?></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            
+            <div class="modal-body">
+            <form id="ratingForm" action="../includes/add-rating.php?id=<?php echo $mid?>" method="post">
+                <input type="hidden" name="movie_id" value="<?php echo $mid ?>"/>
+                <div class="mb-3">
+                    <label for="addRating" class="form-label">Add Rating</label>
+                    <select class="form-select" name="review_rating" id="addRating" required>
+                        <option selected>Open to select rating</option>
+                        <option name="star" id="star1" value="1">&#9733;</option>
+                        <option name="star" id="star2" value="2">&#9733; &#9733;</option>
+                        <option name="star" id="star3" value="3">&#9733; &#9733; &#9733;</option>
+                        <option name="star" id="star4" value="4">&#9733; &#9733; &#9733; &#9733;</option>
+                        <option name="star" id="star5" value="5">&#9733; &#9733; &#9733; &#9733; &#9733; &#9733;</option>
+                    </select>      
+                </div>
+                <div class="mb-3">
+                <textarea class="form-control" rows="3" name="rating_comment" maxlength="255"placeholder="Add your comment here..." required></textarea>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <input class="btn btn-primary" type="submit" name="submit" value="Submit" />
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <?php 
+
     }}
     $conn->close();
     include_once '../templates/footer.php';
