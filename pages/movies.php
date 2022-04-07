@@ -55,7 +55,7 @@
                 foreach($review_result as $review_res) {
             ?>
                 <h2 class="text" style="font-weight:normal; font-size:110%">
-                <?php echo "<strong>" . $review_res['review_rating'] . " stars - </strong>" . $review_res['review_comment']?>
+                <?php echo "<strong>" . $review_res['review_rating'] . " stars - </strong><em>" . $review_res['review_comment'] . "</em>"?>
                 <hr/>
                 </h2>
             <?php }}else{
