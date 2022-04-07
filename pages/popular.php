@@ -16,7 +16,16 @@
     } else {
         while($res = $result->fetch_assoc()) {
 ?>
-
+<?php
+    if(isset($_GET["success"])){
+        if($_GET["success"] == "review_added") {
+            echo "</br><h6 class='alert alert-success text-center' role='alert'>Review was successfully added! Thank you. </h6>";
+        }
+        else if ($_GET["error"] == "stmtfailed") {
+            echo "</br><h6 class='text-center'>Something went wrong when adding, try again!</h6>";
+        }
+    }
+?>
 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
     <?php foreach($result as $res) { ?>
     <div class="col-xs-4">
@@ -24,7 +33,7 @@
             <div class="row no-guters">
                 <div class="col-auto">
                     <a href="../pages/movies.php?id=<?php echo $res['movie_id']?>&title=<?php echo $res['movie_title']?>">
-                        <img src="<?php echo $res['movie_img']; ?>" class="image-fluid" width="" height="300"/>
+                        <img src="<?php echo $res['movie_img']; ?>" class="image-fluid rounded" width="" height="300"/>
                     </a>
                 </div>
                 <div class="col">
