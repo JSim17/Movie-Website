@@ -9,11 +9,11 @@
     }
     
     // We don't have the password or email info stored in sessions so instead we can get the results from the database.
-    $stmt = $conn->prepare('SELECT password, email FROM accounts WHERE id = ?');
+    $stmt = $conn->prepare('SELECT password, email, created_at FROM accounts WHERE id = ?');
     // In this case we can use the account ID to get the account info
     $stmt ->bind_param('i', $_SESSION['id']);
     $stmt ->execute();
-    $stmt->bind_result($password, $email);
+    $stmt->bind_result($password, $email, $created_at);
     $stmt ->fetch();
     $stmt ->close();
 ?>
@@ -23,7 +23,7 @@
         <p>Your account details are below:</p>
     </div>
     <div class="card-body">
-        <table>
+        <table class="table">
             <tr>
                 <td>Username:</td>
                 <td><?=$_SESSION['name']?></td>
@@ -35,6 +35,10 @@
             <tr>
                 <td>Email:</td>
                 <td><?=$email?></td>
+            </tr>
+            <tr>
+                <td>Joined:</td>
+                <td><?=$created_at?></td>
             </tr>
         </table>
     </div>
