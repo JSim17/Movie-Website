@@ -48,7 +48,6 @@
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="../pages/popular.php">Popular</a></li>
                 <li><a class="dropdown-item" href="../pages/upcoming.php">Upcoming</a></li>
-                <li><a class="dropdown-item" href="../pages/genres.php">Genres</a></li>
                 </ul>
             </li>
 
