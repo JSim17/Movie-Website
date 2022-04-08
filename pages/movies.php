@@ -39,12 +39,12 @@
         <h2 class="text" style="font-weight:normal; font-size:110%">
             <?php echo $res['movie_year'];?>
         </h2>
+        <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#trailerModal">Trailer</button>
     </br>
     <?php if(isset($_SESSION['loggedin'])){?>
         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#ratingModal">Review</button>
-        <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#trailerModal">Trailer</button>
         <?php } else {
-        echo "<p>PLease <a class='alert-link' data-bs-toggle='modal' data-bs-target='#loginModal' href=''>login</a> to review and add movies!</p>";
+        echo "<p>PLease <a class='alert-link' data-bs-toggle='modal' data-bs-target='#loginModal' href=''>login</a> to review!</p>";
         }?>
     </br>
     </br>
