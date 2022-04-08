@@ -62,6 +62,7 @@
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="../pages/profile.php">Profile</a></li>
+                <li><a class="dropdown-item" href="../pages/my-reviews.php">My Reviews</a></li>
                 </ul>
                 </li>
             <?php } ?>
