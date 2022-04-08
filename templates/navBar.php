@@ -79,8 +79,8 @@
         ?>
 
         <form action="../includes/movie-search.php" method="POST" class="d-flex">
-            <input class="form-control me-2" type="text" name="search" placeholder="Search" aria-label="Search" onkeyup="showResult(this.value)">
-            <div id="liveSearch"></div>
+            <input class="form-control me-2" type="text" name="search" id="search" placeholder="Search" aria-label="Search" onkeyup="showResult(this.value)">
+            <div id="search-result"></div>
             <button class="btn btn-outline-success" type="submit" name="submit-search">Search</button>
         </form>
     </div>
