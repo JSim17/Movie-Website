@@ -39,8 +39,8 @@
         <h2 class="text" style="font-weight:normal; font-size:110%">
             <?php echo $res['movie_year'];?>
         </h2>
-        <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#trailerModal">Trailer</button>
     </br>
+    <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#trailerModal">Trailer</button>
     <?php if(isset($_SESSION['loggedin'])){?>
         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#ratingModal">Review</button>
         <?php } else {
