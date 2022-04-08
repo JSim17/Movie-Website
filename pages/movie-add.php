@@ -5,6 +5,17 @@
  if(isset($_SESSION['loggedin'])){
 
 ?>
+<?php
+    if(isset($_GET["error"])){
+        if($_GET["error"] == "none") {
+            echo "</br><h6 class='alert alert-success text-center' role='alert'>New movie was added successfully!</h6>";
+        }
+        else if ($_GET["error"] == "stmtfailed") {
+            echo "</br><h6 class='text-center'>Something went wrong when adding, try again!</h6>";
+        }
+    }
+?>
+
 <div class="card">
     <div class="card-header">
         <p>Input the details of the movie you wish to add</p>
@@ -41,6 +52,12 @@
                     <input type="text" class="form-control" id="movie_cast" name="movie_cast" placeholder="Movie Cast - Seperated with ','" required>
                 </div>
             </div>
+            <div class="row mb-3">
+                <label for="movie_trailer" class="col-sm-2 col-form-label">Trailer</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="movie_trailer" name="movie_trailer" placeholder="Youtube key for trailer" required>
+                </div>
+            </div>
             <div class="text-center">
                 <button type="submit" class="btn btn-primary" name="submit">Submit</button>
             </div>
@@ -48,16 +65,6 @@
     </div>
 </div>
 
-<?php
-    if(isset($_GET["error"])){
-        if($_GET["error"] == "none") {
-            echo "</br><h6 class='text-center'>New movie was added successfully!</h6>";
-        }
-        else if ($_GET["error"] == "stmtfailed") {
-            echo "</br><h6 class='text-center'>Something went wrong when adding, try again!</h6>";
-        }
-    }
-?>
 
 <?php }else{ ?>
     

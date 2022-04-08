@@ -42,6 +42,7 @@
     </br>
     <?php if(isset($_SESSION['loggedin'])){?>
         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#ratingModal">Review</button>
+        <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#trailerModal">Trailer</button>
         <?php } else {
         echo "<p>PLease <a class='alert-link' data-bs-toggle='modal' data-bs-target='#loginModal' href=''>login</a> to review and add movies!</p>";
         }?>
@@ -59,10 +60,24 @@
                 </h2>
             <?php }}else{
                 echo "<h3 style='color:#4C5052'> There doesn't seem to be any reviews for this movie! Why not add one.</h3>";
-            } ?>
+            } }?>
     </div>
-    <?php }} ?>
+    
+    <div class="modal fade" id="trailerModal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="trailerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-body border-0">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe id="movieTrailer" class="embed-responsive-item" width="100%" height="500" src="https://www.youtube.com/embed/<?php echo $res['movie_trailer'];?>" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <?php } ?>
 </div>
+
 
 <!-- Modal -->
 <div class="modal fade" id="ratingModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="ratingModalLabel" aria-hidden="true">
@@ -100,6 +115,14 @@
         </div>
     </div>
 </div>
+
+<style>
+    .modal-dialog iframe{
+        margin: 0 auto;
+        display: block;
+    }
+</style>
+
 
 
 <?php 
